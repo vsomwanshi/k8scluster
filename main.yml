@@ -1,6 +1,6 @@
 ---
-#- import_playbook: playbooks/kube-prereq.yml
-#- import_playbook: playbooks/docker.yml
-#- import_playbook: playbooks/kubernetes.yml
-#- import_playbook: playbooks/kubeadm-init.yml
+- import_playbook: playbooks/kube-prereq.yml
+- import_playbook: playbooks/docker.yml
+- import_playbook: playbooks/kubernetes.yml
+- import_playbook: playbooks/kubeadm-init.yml
 - import_playbook: playbooks/kubeadm-add-worker.yml

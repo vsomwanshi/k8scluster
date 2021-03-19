@@ -8,8 +8,14 @@
     register: kubeadm_out
 
   - debug:
-      msg: "{{ kubeadm_out }}"
+      msg: "{{ kubeadm_out.stdout_lines }}"
 
+  - name: copy the token file locally
+    local_action: 
+      module: copy 
+      content: "{{ kubeadm_out.stdout_lines | join('\n') }}" 
+      dest: "{{ token_file }}"
+  
   - name: create directory
     shell: mkdir -p $HOME/.kube
 

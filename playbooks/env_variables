@@ -10,3 +10,5 @@ nested_list_worker:
 
 system_user: root
 user_home_dir: /root
+
+token_file: join_token

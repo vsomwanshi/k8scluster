@@ -3,3 +3,15 @@
   vars_files:
   - env_variables
   tasks:  
+  - name: Copying token to worker nodes
+    copy: 
+      src: "{{ token_file }}"
+      dest: join_token
+
+  - name: reset kubeadm
+    shell: kubeadm reset -f
+
+  - name: join token and add worker node
+    shell: |
+      cat join_token |tail -2 > token.sh
+      sh token.sh
