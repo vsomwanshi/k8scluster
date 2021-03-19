@@ -1,0 +1,15 @@
+---
+- hosts: k8smaster
+  vars_files:
+  - env_variables
+  tasks:
+  - name: download the helm packages
+    shell: |
+      wget https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz
+      tar -zxvf helm-v3.0.0-linux-amd64.tar.gz
+      mv linux-amd64/helm /usr/local/bin/helm
+      helm version
+    register: helm
+  
+  - debug:
+      msg: "{{ helm.stdout_lines }}"

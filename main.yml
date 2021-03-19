@@ -4,3 +4,4 @@
 - import_playbook: playbooks/install_kubeadm.yml
 - import_playbook: playbooks/configure_master_node.yml
 - import_playbook: playbooks/configure_worker_node.yml
+- import_playbook: playbooks/configure_helm.yml
