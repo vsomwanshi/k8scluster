@@ -3,10 +3,6 @@
   vars_files:
   - env_variables
   tasks:
-
-#Run these on all your servers that will be part of the Kubernetes cluster
-#Config firewall
-
   - name: enable firewalld service on all the nodes , part of k8s cluster
     service:
       name: firewalld
@@ -53,8 +49,6 @@
       permanent: yes
       state: enabled
 
-#Also opne dynaic ports 30000 to 32767 for "NodePort" access.
-
   - name: permit traffic in default zone on port 30000-32767/tcp
     firewalld:
       port: 30000-32767/tcp
@@ -72,12 +66,8 @@
   - name: enable masquerade permanent on nodes
     firewalld:
       masquerade: yes
-      
       state: enabled
       permanent: yes
-
-#Netfilter offers various functions and operations for packet filtering, network address translation, and port translation, which provide the functionality required for directing packets through a network 
-#modprobe - program to add and remove modules from the Linux Kernel
 
   - name: perform modprobe
     shell: modprobe br_netfilter
@@ -86,8 +76,6 @@
     service:
       name: firewalld
       state: restarted
-
-# set the host and ip address in /etc/hosts
 
   - name: Update the /etc/hosts file with node name
     lineinfile:

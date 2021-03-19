@@ -27,10 +27,11 @@
       msg: "{{ kube_pack.stdout_lines }}"
 
   - name: modify the kubelet file according to usecase
-    replace:
-      path: "/etc/sysconfig/kubelet"
-      regex: "KUBELET_EXTRA_ARGS="
-      replace: "KUBELET_EXTRA_ARGS= --runtime-cgroups=/systemd/system.slice --kubelet-cgroups=/systemd/system.slice"
+    lineinfile:
+      path: /etc/sysconfig/kubelet
+      state: present
+      regexp: '^KUBELET_EXTRA_ARGS='
+      line: 'KUBELET_EXTRA_ARGS= --runtime-cgroups=/systemd/system.slice --kubelet-cgroups=/systemd/system.slice'
 
   - name: start and enable the kubelet service
     shell: sudo systemctl enable --now kubelet
@@ -51,21 +52,22 @@
     shell: swapoff -a
     
   - name: create a docker daemon file
-    blockinfile: 
-      path: /etc/docker/daemon.json
+    lineinfile: 
+      dest: /etc/docker/daemon.json
+      line: "{{ item }}"
       create: yes
-      block: |
-        {
-          "exec-opts": ["native.cgroupdriver=systemd"],
-          "log-driver": "json-file",
-          "log-opts": {
-          "max-size": "100m"
-        },
-          "storage-driver": "overlay2",
-          "storage-opts": [
-          "overlay2.override_kernel_check=true"
-        ]
-        }
+    with_items: 
+      - '{'
+      - '"exec-opts": ["native.cgroupdriver=systemd"],'
+      - '"log-driver": "json-file",'
+      - '"log-opts": {'
+      - '"max-size": "100m"'
+      - '},'
+      - '"storage-driver": "overlay2",'
+      - '"storage-opts": ['
+      - '"overlay2.override_kernel_check=true"'
+      - ']'
+      - '}'
 
   - name: Create a directory if it does not exist
     file:
