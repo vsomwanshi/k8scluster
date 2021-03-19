@@ -29,5 +29,5 @@
     shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
 
   - name: copy files
-    shell: scp -r $HOME/.kube "{{ system_user }}"@"{{item}}":"{{user_home_dir}}"
+    shell: scp -r -o StrictHostKeyChecking=no $HOME/.kube "{{ system_user }}"@"{{item}}":"{{user_home_dir}}"
     with_items: "{{ nested_list_worker }}"
