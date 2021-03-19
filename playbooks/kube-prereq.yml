@@ -13,4 +13,56 @@
       name: firewalld
       enabled: yes
 
+  - name: permit traffic in default zone on port 6443/tcp
+    firewalld:
+      port: 6443/tcp
+      permanent: yes
+      state: enabled
   
+  - name: permit traffic in default zone on port 379-2380/tcp
+    firewalld:
+      port: 2379-2380/tcp
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 10250/tcp
+    firewalld:
+      port: 10250/tcp
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 10251/tcp
+    firewalld:
+      port: 10251/tcp
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 10252/tcp
+    firewalld:
+      port: 10252/tcp
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 10255/tcp 
+    firewalld:
+      port: 10255/tcp 
+      permanent: yes
+      state: enabled
+
+  - name: permit traffic in default zone on port 30000-32767/tcp
+    firewalld:
+      port: 30000-32767/tcp
+      permanent: yes
+      state: enabled
+  
+  - name: permit traffic in trusted zone and add source
+    firewalld:
+      source: 
+      zone: trusted
+      state: enabled
+
+  - name: enable masquerade permanent on nodes
+    firewalld:
+      masquerade: yes
+      state: enabled
+      permanent: yes
