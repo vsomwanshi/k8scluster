@@ -8,6 +8,12 @@
       src: "{{ token_file }}"
       dest: join_token
 
+  - name: remove join_token file from local ansible server
+    local_action:
+      module: file
+      path: "{{ token_file }}"
+      state: absent
+
   - name: reset kubeadm
     shell: kubeadm reset -f
 
@@ -15,3 +21,4 @@
     shell: |
       cat join_token |tail -2 > token.sh
       sh token.sh
+      rm -rf join_token
