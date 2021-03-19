@@ -3,9 +3,3 @@
   vars_files:
   - env_variables
   tasks:  
-  - name: copy the .kube config file on your worker node
-    copy:
-      src: $HOME/.kube
-      dest: "{{ user_home_dir }}"
-    delegate_to: "{{ item }}"
-    with_items: "{{ nested_list_master }}"

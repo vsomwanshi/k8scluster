@@ -17,6 +17,11 @@
     shell: |
       sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
       sudo chown $(id -u):$(id -g) $HOME/.kube/config
+      export KUBECONFIG=/etc/kubernetes/admin.conf
 
   - name: apply calico
     shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+
+  - name: copy files
+    shell: scp -r $HOME/.kube "{{ system_user }}"@"{{item}}":"{{user_home_dir}}"
+    with_items: "{{ nested_list_worker }}"
