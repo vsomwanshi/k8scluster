@@ -4,7 +4,7 @@
   - env_variables
   tasks:
   - name: initiate kubeadm on master node
-    shell: kubeadmin init
+    shell: sudo kubeadm init
     register: kubeadm_out
 
   - debug:
@@ -20,7 +20,3 @@
 
   - name: apply calico
     shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
-
-  - name: copy the .kube config file on your worker node
-    shell: scp -r $HOME/.kube "{{ system_user }}@{{ item }}:/home/{{ system_user }}"
-    with_items:  "{{ nested_list_worker }}"

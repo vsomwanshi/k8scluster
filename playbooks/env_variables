@@ -2,7 +2,11 @@ nested_list_all_cluster_nodes:
   - - 9.46.93.134
     - 9.46.93.144 
 
+nested_list_master:
+  - - 9.46.93.134
+
 nested_list_worker:
   - - 9.46.93.144 
 
 system_user: root
+user_home_dir: /root
