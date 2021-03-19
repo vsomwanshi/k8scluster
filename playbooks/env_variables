@@ -1,15 +1,15 @@
 # Add master and worker nodes IP's which will be the part of cluster
 nested_list_all_cluster_nodes:
-  - - 9.46.93.134
-    - 9.46.93.144 
+  - - 10.20.30.40
+    - 10.20.30.50
 
 # Add master nodes IP's which will be the part of cluster
 nested_list_master:
-  - - 9.46.93.134
+  - - 10.20.30.40
 
 # Add worker nodes IP's which will be the part of cluster
 nested_list_worker:
-  - - 9.46.93.144 
+  - - 10.20.30.50 
 
 system_user: root               ### here i'm using root user, but you can change according to your user
 user_home_dir: /root            ### here i'm using root user so home directory for root user is /root but it may vary according to your user

@@ -1,5 +1,5 @@
 [k8smaster]
-demomaster0011 ansible_ssh_host=9.46.93.134 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
+kubemaster ansible_ssh_host=10.20.30.40 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
 
 [k8sworker]
-demoworker0011 ansible_ssh_host=9.46.93.144 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
+kubeworker ansible_ssh_host=10.20.30.50 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
