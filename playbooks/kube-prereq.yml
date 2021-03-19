@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars_files:
+  - env_variables
+  tasks:
+  - name: enable firewalld service on all the nodes , part of k8s cluster
+    service:
+      name: firewalld
+      state: started
+
+  - name: enabled firewalld service on all the nodes , part of k8s cluster
+    service:
+      name: firewalld
+      enabled: yes
+
+  

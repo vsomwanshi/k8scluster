@@ -1,0 +1,5 @@
+[k8smaster]
+10.20.30.40 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
+
+[k8sworker]
+10.20.30.40 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
