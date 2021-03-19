@@ -65,12 +65,14 @@
     firewalld:
       source: "{{ item }}"
       zone: trusted
+      permanent: yes
       state: enabled
     with_items: "{{ nested_list_all_cluster_nodes }}"
 
   - name: enable masquerade permanent on nodes
     firewalld:
       masquerade: yes
+      
       state: enabled
       permanent: yes
 
