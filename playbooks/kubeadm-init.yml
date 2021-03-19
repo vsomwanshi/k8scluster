@@ -1,0 +1,26 @@
+---
+- hosts: k8smaster
+  vars_files:
+  - env_variables
+  tasks:
+  - name: initiate kubeadm on master node
+    shell: kubeadmin init
+    register: kubeadm_out
+
+  - debug:
+      msg: "{{ kubeadm_out }}"
+
+  - name: create directory
+    shell: mkdir -p $HOME/.kube
+
+  - name: configure the kube config
+    shell: |
+      sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+      sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+  - name: apply calico
+    shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+
+  - name: copy the .kube config file on your worker node
+    shell: scp -r $HOME/.kube "{{ system_user }}@{{ item }}:/home/{{ system_user }}"
+    with_items:  "{{ nested_list_worker }}"
