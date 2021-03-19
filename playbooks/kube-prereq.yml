@@ -97,3 +97,26 @@
     register: hosts_update
     when: ansible_hostname != "{{ item }}" or ansible_hostname == "{{ item }}"
     with_items: "{{groups['all']}}"
+
+# Docker packages are not available anymore on CentOS 8 or RHEL 8 package repositories, so run following dnf command to enable Docker CE package repository.
+  - name: configure docker-ce repository
+    shell: sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install Docker
+  - name: install docker packages
+    shell: sudo dnf install docker-ce --nobest -y --allowerasing
+
+# Start and enable the Docker daemon
+  - name: restart the docker service and enable
+    shell: sudo systemctl enable --now docker
+
+# Add your user to the docker group
+  - name: Add your user to the docker group
+    shell: sudo usermod -aG docker $USER
+
+# Verify  docker installed correctly
+  - name: verifyt the docker version
+    shell: docker --version
+
+
+

@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars_files:
+  - env_variables
+  tasks:
+# Now we can install Kubernetes on CentOS. First, we must create a new repository:
+  - name: 

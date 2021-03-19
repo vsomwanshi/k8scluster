@@ -1,2 +1,2 @@
 ---
-- import_playbook: install-docker.yml
+- import_playbook: kube-prereq.yml
