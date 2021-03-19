@@ -1,4 +1,4 @@
-k8smaster]
+[k8smaster]
 kubemaster01 ansible_ssh_host=9.46.65.69 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
 
 [k8sworker]
