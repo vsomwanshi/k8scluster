@@ -1,0 +1,10 @@
+---
+- hosts: all
+  #vars_files:
+  #- env_variables
+  tasks:
+  - name: configure docker repository
+    yum_repository:
+      name: docker
+      description: Docker CE package
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
