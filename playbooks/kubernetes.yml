@@ -3,18 +3,21 @@
   vars_files:
   - env_variables
   tasks:
-# Now we can install Kubernetes on CentOS. First, we must create a new repository:
   - name: create a kubernetes repository to install required kube packages
     yum_repository:
-      name: Kubernetes
+      name: kubernetes
       description: kubernetes repository
       baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
       enabled: yes
       gpgcheck: yes
       repo_gpgcheck: yes
       gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-  
+
   - name: yum-clean-metadata
     command: yum clean metadata
     args:
       warn: no
+
+
+  - name: install kubernetes
+    
