@@ -54,6 +54,14 @@
       port: 30000-32767/tcp
       permanent: yes
       state: enabled
+
+  - name: get the ip address for each node of a cluster
+    set_fact:
+      ip_addr: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}"
+    with_items: "{{groups['all']}}"
+
+  - debug:
+      msg: "{{ ip_addr }}"
   
   - name: permit traffic in trusted zone and add source
     firewalld:
@@ -61,7 +69,7 @@
       zone: trusted
       permanent: yes
       state: enabled
-    with_items: "{{ nested_list_all_cluster_nodes }}"
+    with_items: "{{ ip_addr }}"
 
   - name: enable masquerade permanent on nodes
     firewalld:
