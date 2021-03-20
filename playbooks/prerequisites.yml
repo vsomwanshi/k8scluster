@@ -60,7 +60,8 @@
       ip_addr: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}"
     with_items: "{{groups['all']}}"
 
-  - debug:
+  - name: display IP's from inventory files
+    debug:
       msg: "{{ ip_addr }}"
   
   - name: permit traffic in trusted zone and add source

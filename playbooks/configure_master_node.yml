@@ -7,7 +7,8 @@
     shell: sudo kubeadm init
     register: kubeadm_out
 
-  - debug:
+  - name: display output of kubeadm installation
+    debug:
       msg: "{{ kubeadm_out.stdout_lines }}"
 
   - name: set a pause after initiating kubeadm

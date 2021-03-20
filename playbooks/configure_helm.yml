@@ -11,7 +11,8 @@
       helm version
     register: helm
   
-  - debug:
+  - name: display output of helm execution
+    debug:
       msg: "{{ helm.stdout_lines }}"
 
   - name: set a pause at end of play

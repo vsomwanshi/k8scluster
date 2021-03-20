@@ -34,7 +34,8 @@
     shell: docker ps -a
     register: image
 
-  - debug:
+  - name: display installed image
+    debug:
       msg: "{{ image.stdout_lines }}"
 
   - name: set a pause at end of play

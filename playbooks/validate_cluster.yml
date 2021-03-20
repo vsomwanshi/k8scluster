@@ -3,12 +3,10 @@
   vars_files:
   - env_variables
   tasks:
-
-  
   - name: validate whether the cluster is ready
     shell: kubectl get nodes
     register: output
 
-  - name: display nodes output
+  - name: display installed cluster nodes output
     debug:
       msg: "{{  output.stdout_lines }}"
