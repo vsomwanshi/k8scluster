@@ -42,7 +42,7 @@ token_file: join_token
 
 5. Check once whether your vm is accessible from ansible server with below command , if you get ping response like "pong" this mean your vm is accessible.
 
-# ansible all -m ping
+ansible all -m ping
 
 Output :
 10.20.30.40 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/libexec/platform-python"},"changed": false,"ping": "pong"}
@@ -51,7 +51,7 @@ Output :
 6. Run the following command to start the installation. Below ansible scripts installs all the reuired preqrequisites, configure master and 
    add the worker nodes in the k8s cluster.
 
-# ansible-playbook main.yml
+ansible-playbook main.yml
 
 7. Once the installation completed validate whether all the worker nodes are added in cluster and are part of cluster. make sure you are running all cmd's from   
    master node.
@@ -63,11 +63,11 @@ kubedemoworker1.fyre.ibm.com   Ready    <none>                 34m   v1.20.5
   
 Note: Take some time to make nodes in to ready state. if you found still nodes are in not-ready state , restart below services on that repsective node.
 
-# systemctl restart docker.service && systemctl restart kubelet.service
+systemctl restart docker.service && systemctl restart kubelet.service
 
 8. if the roles is not defined to worker nodes, you can add role to worker node with the help of below commands.
 
-# kubectl label node <worker_hostname> node-role.kubernetes.io/worker=worker
+kubectl label node <worker_hostname> node-role.kubernetes.io/worker=worker
 
 9. To get more knowledge on kubernetes refer to kuberenets offical pages.
 
