@@ -10,6 +10,10 @@
   - debug:
       msg: "{{ kubeadm_out.stdout_lines }}"
 
+  - name: set a pause after initiating kubeadm
+    pause:
+      seconds: 10
+
   - name: copy the token file locally
     local_action: 
       module: copy 
@@ -27,3 +31,7 @@
 
   - name: apply calico
     shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10

@@ -22,3 +22,7 @@
       cat join_token |tail -2 > token.sh
       sh token.sh
       rm -rf join_token
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10

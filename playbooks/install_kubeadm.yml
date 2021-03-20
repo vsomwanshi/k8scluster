@@ -26,6 +26,10 @@
   - debug:
       msg: "{{ kube_pack.stdout_lines }}"
 
+  - name: set a pause after installation of packages
+    pause:
+      seconds: 10
+
   - name: modify the kubelet file according to usecase
     lineinfile:
       path: /etc/sysconfig/kubelet
@@ -82,3 +86,7 @@
 
   - debug:
       msg: "{{ docker_service.stdout_lines }}"
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10

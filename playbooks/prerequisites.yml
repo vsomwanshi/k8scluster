@@ -85,6 +85,10 @@
       name: firewalld
       state: restarted
 
+  - name: set a pause after restart of service
+    pause:
+      seconds: 10
+
   - name: Update the /etc/hosts file with node name
     lineinfile:
       path: "/etc/hosts"
@@ -95,3 +99,7 @@
     register: hosts_update
     when: ansible_hostname != "{{ item }}" or ansible_hostname == "{{ item }}"
     with_items: "{{groups['all']}}"
+
+  - name: set a pause at end of playbook
+    pause:
+      seconds: 10

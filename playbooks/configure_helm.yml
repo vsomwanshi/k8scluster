@@ -13,3 +13,7 @@
   
   - debug:
       msg: "{{ helm.stdout_lines }}"
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 30

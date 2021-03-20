@@ -6,11 +6,20 @@
   - name: configure docker-ce repository
     shell: sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
+  - name: yum-clean-metadata
+    command: yum clean metadata
+    args:
+      warn: no
+
   - name: install docker packages
     shell: sudo dnf install docker-ce --nobest -y --allowerasing
 
   - name: restart the docker service and enable
     shell: sudo systemctl enable --now docker
+
+  - name: set a pause after restart of service
+    pause:
+      seconds: 10
 
   - name: Add your user to the docker group
     shell: sudo usermod -aG docker $USER
@@ -27,3 +36,7 @@
 
   - debug:
       msg: "{{ image.stdout_lines }}"
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10
