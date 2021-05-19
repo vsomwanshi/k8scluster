@@ -32,11 +32,9 @@ kubedemoworker1 ansible_ssh_host=10.20.30.50 ansible_ssh_user=root ansible_ssh_p
 [root@fyreansible playbooks]# 
 ```
 
-4. Modify the env_variables file according to your setup, 
-    4.1 I've used root , but user may vary according to environemt because according to 
-          security rules direct root user access is disabled
-
-    4.2 Provide your user home directory details here, and save the file.
+4. Modify the env_variables file according to your setup,  
+  4.1 I've used root , but user may vary according to environemt because according to security rules direct root user access is disabled
+  4.2 Provide your user home directory details here, and save the file.
 
 ```
 [root@ansible-server playbooks]# cat env_variables 
