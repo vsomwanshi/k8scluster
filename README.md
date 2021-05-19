@@ -1,12 +1,11 @@
 1. Clone repository with below command on your respective ansible server.
-
-   ```
+```
    git clone git@github.com:vsomwanshi/k8scluster.git
-
+```
+   
 2.  When you open the downloaded folder, you will find inventory file, 
     create your inventory file according to below standards, mention your master 
     details under master and worker details under worker and save the file.
-
 ```
 [root@ansible-server k8scluster]# ls -lrt
 total 16
@@ -23,7 +22,6 @@ kubedemomaster1 ansible_ssh_host=10.20.30.40 ansible_ssh_user=root ansible_ssh_p
 [k8sworker]
 kubedemoworker1 ansible_ssh_host=10.20.30.50 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
 ```
-      
 3. Change the directory to playbooks, you will get the env_variables file.
    I've created env_variables file to set environment related variables
 
@@ -47,7 +45,6 @@ user_home_dir: /root            ### here i'm using root user so home directory f
 token_file: join_token
 ```
 5. Check once whether your vm is accessible from ansible server with below command , if you get ping response like "pong" this mean your vm is accessible.
-
 ```
 ansible all -m ping
 
