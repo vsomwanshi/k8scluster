@@ -52,13 +52,11 @@ Output :
 10.20.30.40 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/libexec/platform-python"},"changed": false,"ping": "pong"}
 10.20.30.50 | SUCCESS => {"ansible_facts": {"discovered_interpreter_python": "/usr/libexec/platform-python"},"changed": false,"ping": "pong"}
 ```
-6. Run the following command to start the installation. Below ansible scripts installs all the reuired preqrequisites, configure master and 
-   add the worker nodes in the k8s cluster.
+6. Run the following command to start the installation. Below ansible scripts installs all the reuired preqrequisites, configure master and add the worker nodes in the k8s cluster.
 ```
 ansible-playbook main.yml
 ```
-7. Once the installation completed validate whether all the worker nodes are added in cluster and are part of cluster. make sure you are running all cmd's from   
-   master node.
+7. Once the installation completed validate whether all the worker nodes are added in cluster and are part of cluster. make sure you are running all cmd's from master node.
 ```
 [root@kubedemomaster1 ~]# kubectl get nodes
 NAME                           STATUS   ROLES                  AGE   VERSION
