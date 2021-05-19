@@ -70,5 +70,4 @@ systemctl restart docker.service && systemctl restart kubelet.service
 kubectl label node <worker_hostname> node-role.kubernetes.io/worker=worker
 ```
 9. To get more knowledge on kubernetes refer to kuberenets offical pages.
-
- https://kubernetes.io/
+   https://kubernetes.io/
