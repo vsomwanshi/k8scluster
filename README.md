@@ -1,6 +1,6 @@
 1. Clone repository with below command on your respective ansible server.
 
-   `
+   ``
    git clone git@github.com:vsomwanshi/k8scluster.git
 
 2.  When you open the downloaded folder, you will find inventory file, 
