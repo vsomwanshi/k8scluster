@@ -1,4 +1,0 @@
-system_user: root               ### here i'm using root user, but you can change according to your user
-user_home_dir: /root            ### here i'm using root user so home directory for root user is /root but it may vary according to your user
-
-token_file: join_token
