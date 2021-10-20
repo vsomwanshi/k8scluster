@@ -1,0 +1,9 @@
+---
+- import_playbook: playbooks/prerequisites.yml
+- import_playbook: playbooks/install_docker.yml
+- import_playbook: playbooks/install_kubeadm.yml
+- import_playbook: playbooks/configure_master_node.yml
+- import_playbook: playbooks/configure_worker_node.yml
+- import_playbook: playbooks/configure_helm.yml
+- import_playbook: playbooks/install_etcd.yaml
+- import_playbook: playbooks/validate_cluster.yml

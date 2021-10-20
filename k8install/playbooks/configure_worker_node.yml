@@ -1,0 +1,28 @@
+---
+- hosts: k8sworker
+  vars_files:
+  - env_variables
+  tasks:  
+  - name: Copying token to worker nodes
+    copy: 
+      src: "{{ token_file }}"
+      dest: join_token
+
+  - name: remove join_token file from local ansible server
+    local_action:
+      module: file
+      path: "{{ token_file }}"
+      state: absent
+
+  - name: reset kubeadm
+    shell: kubeadm reset -f
+
+  - name: join token and add worker node
+    shell: |
+      cat join_token |tail -2 > token.sh
+      sh token.sh
+      rm -rf join_token
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10

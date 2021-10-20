@@ -1,0 +1,38 @@
+---
+- hosts: k8smaster
+  vars_files:
+  - env_variables
+  tasks:
+  - name: initiate kubeadm on master node
+    shell: sudo kubeadm init
+    register: kubeadm_out
+
+  - name: display output of kubeadm installation
+    debug:
+      msg: "{{ kubeadm_out.stdout_lines }}"
+
+  - name: set a pause after initiating kubeadm
+    pause:
+      seconds: 10
+
+  - name: copy the token file locally
+    local_action: 
+      module: copy 
+      content: "{{ kubeadm_out.stdout_lines | join('\n') }}" 
+      dest: "{{ token_file }}"
+  
+  - name: create directory
+    shell: mkdir -p $HOME/.kube
+
+  - name: configure the kube config
+    shell: |
+      sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+      sudo chown $(id -u):$(id -g) $HOME/.kube/config
+      export KUBECONFIG=/etc/kubernetes/admin.conf
+
+  - name: apply calico
+    shell: kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
+
+  - name: set a pause at end of play
+    pause:
+      seconds: 10
