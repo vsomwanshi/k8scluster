@@ -1,0 +1,5 @@
+[k8smaster]
+vs-kubem1 ansible_ssh_host=9.46.108.65 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
+
+[k8sworker]
+vs-kubew1 ansible_ssh_host=9.46.108.81 ansible_ssh_user=root ansible_ssh_pass=Passw0rd@1234
