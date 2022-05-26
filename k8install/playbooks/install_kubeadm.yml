@@ -9,8 +9,8 @@
       description: kubernetes repository
       baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
       enabled: yes
-      gpgcheck: yes
-      repo_gpgcheck: yes
+      gpgcheck: no
+      repo_gpgcheck: no
       gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 
   - name: yum-clean-metadata
@@ -20,7 +20,7 @@
 
 
   - name: install kubernetes packages kubeadm, kubectl, kubelet
-    shell: sudo dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+    shell: sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
     register: kube_pack
 
   - debug:
