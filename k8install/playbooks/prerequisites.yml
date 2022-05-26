@@ -57,7 +57,8 @@
 
   - name: get the ip address for each node of a cluster
     set_fact:
-      ip_addr: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}"
+      #ip_addr: "{{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}"
+      ip_addr: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
     with_items: "{{groups['all']}}"
 
   - name: display IP's from inventory files
@@ -94,7 +95,8 @@
     lineinfile:
       path: "/etc/hosts"
       regexp: ".*\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
-      line: "{{ hostvars[item]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
+      line: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
+      #line: "{{ hostvars[item]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
       state: present
       backup: yes
     register: hosts_update
