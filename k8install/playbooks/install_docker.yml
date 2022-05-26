@@ -4,7 +4,7 @@
   - env_variables
   tasks:
   - name: configure docker-ce repository
-    shell: sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+    shell: sudo yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 
   - name: yum-clean-metadata
     command: yum clean metadata
@@ -12,7 +12,7 @@
       warn: no
 
   - name: install docker packages
-    shell: sudo dnf install docker-ce --nobest -y --allowerasing
+    shell: sudo yum install docker-ce --nobest -y --allowerasing
 
   - name: restart the docker service and enable
     shell: sudo systemctl enable --now docker
